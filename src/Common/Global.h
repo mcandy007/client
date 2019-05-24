@@ -86,7 +86,8 @@ namespace Osc
 {
     static const bool DEFAULT_USE_BUNDLE = false;
     static const bool DEFAULT_TRIGGER_ON_NEXT = false;
-    static const int DEFAULT_PORT = 6250;
+    static const int DEFAULT_MONITOR_PORT = 3250;
+    static const int DEFAULT_CONTROL_PORT = 6250;
     static const int DEFAULT_WEBSOCKET_PORT = 4250;
     static const QString DEFAULT_OUTPUT = "";
     static const QString DEFAULT_TYPE = "String";
@@ -113,12 +114,13 @@ namespace Osc
     static const QString FILERECORDER_FRAME_FILTER = "#IPADDRESS#/channel/#CHANNEL#/output/port/200/frame";
     static const QString FILERECORDER_FPS_FILTER = "#IPADDRESS#/channel/#CHANNEL#/output/port/200/fps";
     static const QString FILERECORDER_PATH_FILTER = "#IPADDRESS#/channel/#CHANNEL#/output/port/200/path";
-    static const QString VIDEOLAYER_FRAME_FILTER = "#IPADDRESS#/channel/#CHANNEL#/stage/layer/#VIDEOLAYER#/file/frame";
-    static const QString VIDEOLAYER_FPS_FILTER = "#IPADDRESS#/channel/#CHANNEL#/stage/layer/#VIDEOLAYER#/file/fps";
-    static const QString VIDEOLAYER_PATH_FILTER = "#IPADDRESS#/channel/#CHANNEL#/stage/layer/#VIDEOLAYER#/file/name";
-    static const QString VIDEOLAYER_PAUSED_FILTER = "#IPADDRESS#/channel/#CHANNEL#/stage/layer/#VIDEOLAYER#/paused";
-    static const QString VIDEOLAYER_LOOP_FILTER = "#IPADDRESS#/channel/#CHANNEL#/stage/layer/#VIDEOLAYER#/loop";
-    static const QString AUDIOCHANNEL_FILTER = "#IPADDRESS#/channel/#CHANNEL#/mixer/audio/#AUDIOCHANNEL#/dBFS";
+    static const QString VIDEOLAYER_TIME_FILTER = "#IPADDRESS#/channel/#CHANNEL#/stage/layer/#VIDEOLAYER#/foreground/file/time";
+    static const QString VIDEOLAYER_CLIP_FILTER = "#IPADDRESS#/channel/#CHANNEL#/stage/layer/#VIDEOLAYER#/foreground/file/clip";
+    static const QString VIDEOLAYER_FPS_FILTER = "#IPADDRESS#/channel/#CHANNEL#/framerate";
+    static const QString VIDEOLAYER_NAME_FILTER = "#IPADDRESS#/channel/#CHANNEL#/stage/layer/#VIDEOLAYER#/foreground/file/name";
+    static const QString VIDEOLAYER_PAUSED_FILTER = "#IPADDRESS#/channel/#CHANNEL#/stage/layer/#VIDEOLAYER#/foreground/paused";
+    static const QString VIDEOLAYER_LOOP_FILTER = "#IPADDRESS#/channel/#CHANNEL#/stage/layer/#VIDEOLAYER#/foreground/loop";
+    static const QString AUDIOCHANNEL_FILTER = "#IPADDRESS#/channel/#CHANNEL#/mixer/audio/volume";
     static const QString ITEM_CONTROL_STOP_FILTER = "/control/#UID#/stop";
     static const QString ITEM_CONTROL_PLAY_FILTER = "/control/#UID#/play";
     static const QString ITEM_CONTROL_PLAYNOW_FILTER = "/control/#UID#/playnow";

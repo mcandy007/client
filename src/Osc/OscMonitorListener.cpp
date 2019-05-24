@@ -1,4 +1,4 @@
-#include "OscListener.h"
+#include "OscMonitorListener.h"
 
 #include <QtCore/QString>
 #include <QtCore/QThread>
@@ -6,33 +6,12 @@
 #include <QtCore/QPair>
 #include <QtCore/QDebug>
 
-OscListener::OscListener(const QString& address, int port, QObject* parent)
+OscMonitorListener::OscMonitorListener(QObject* parent)
     : QObject(parent)
 {
-    try
-    {
-        this->port = port;
-
-        this->socket = new UdpSocket();
-        this->socket->SetAllowReuse(true);
-        this->socket->Bind(IpEndpointName(address.toStdString().c_str(), this->port));
-
-        qDebug("Listening for incoming OSC messages over UDP on port %d", this->port);
-
-        this->multiplexer = new SocketReceiveMultiplexer();
-        this->multiplexer->AttachSocketListener(this->socket, this);
-
-        this->thread = new OscThread(this->multiplexer, this);
-
-        QTimer::singleShot(200, this, SLOT(sendEventBatch()));
-    }
-    catch (std::runtime_error &e)
-    {
-        qDebug("%s", qPrintable(QString::fromStdString(e.what()).trimmed()));
-    }
 }
 
-OscListener::~OscListener()
+OscMonitorListener::~OscMonitorListener()
 {
     if (this->thread != nullptr)
     {
@@ -44,13 +23,33 @@ OscListener::~OscListener()
     }
 }
 
-void OscListener::start()
+void OscMonitorListener::start(int port)
 {
-    if (this->thread != nullptr && this->socket->IsBound())
-        this->thread->start();
-}
+    try
+    {
+        this->port = port;
 
-void OscListener::ProcessMessage(const osc::ReceivedMessage& message, const IpEndpointName& endpoint)
+        this->socket = new UdpSocket();
+        this->socket->SetAllowReuse(true);
+        this->socket->Bind(IpEndpointName("0.0.0.0", this->port));
+
+        qDebug("Listening for incoming OSC monitor messages over UDP on port %d", this->port);
+
+        this->multiplexer = new SocketReceiveMultiplexer();
+        this->multiplexer->AttachSocketListener(this->socket, this);
+
+        this->thread = new OscThread(this->multiplexer, this);
+        this->thread->start();
+
+        QTimer::singleShot(200, this, SLOT(sendEventBatch()));
+    }
+    catch (std::runtime_error &e)
+    {
+        qDebug("%s", qPrintable(QString::fromStdString(e.what()).trimmed()));
+    }
+ }
+
+void OscMonitorListener::ProcessMessage(const osc::ReceivedMessage& message, const IpEndpointName& endpoint)
 {
     char addressBuffer[256];
 
@@ -78,22 +77,14 @@ void OscListener::ProcessMessage(const osc::ReceivedMessage& message, const IpEn
     QString eventMessage = QString("%1").arg(message.AddressPattern());
     QString eventPath = QString("%1%2").arg(addressBuffer).arg(message.AddressPattern());
 
-    //qDebug("DEBUG: OSC message received: %s", eventPath);
+    //qDebug("DEBUG: OSC monitor message received: %s", eventPath);
 
     QMutexLocker locker(&eventsMutex);
-    if (eventMessage.startsWith("/control"))
-    {
-        qDebug("Received OSC message over UDP from %s:%d: %s", qPrintable(addressBuffer), this->port, qPrintable(eventMessage));
-
-        // Do not overwrite control commands already in queue.
-        if (!this->events.contains(eventPath))
-            this->events[eventPath] = arguments;
-    }
-    else
+    if (!eventMessage.startsWith("/control"))
         this->events[eventPath] = arguments;
 }
 
-void OscListener::sendEventBatch()
+void OscMonitorListener::sendEventBatch()
 {
     QMap<QString, QList<QVariant>> other;
     {

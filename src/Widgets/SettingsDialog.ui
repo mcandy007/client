@@ -775,7 +775,7 @@
      <property name="geometry">
       <rect>
        <x>514</x>
-       <y>38</y>
+       <y>37</y>
        <width>120</width>
        <height>20</height>
       </rect>
@@ -852,7 +852,7 @@
      <property name="geometry">
       <rect>
        <x>364</x>
-       <y>39</y>
+       <y>38</y>
        <width>141</width>
        <height>20</height>
       </rect>
@@ -883,8 +883,8 @@
     <widget class="QCheckBox" name="checkBoxDisableAudioInStream">
      <property name="geometry">
       <rect>
-       <x>111</x>
-       <y>41</y>
+       <x>110</x>
+       <y>40</y>
        <width>211</width>
        <height>17</height>
       </rect>
@@ -3356,11 +3356,11 @@
     <attribute name="title">
      <string>OSC</string>
     </attribute>
-    <widget class="QLineEdit" name="lineEditOscInputPort">
+    <widget class="QLineEdit" name="lineEditOscInputMonitorPort">
      <property name="geometry">
       <rect>
-       <x>204</x>
-       <y>76</y>
+       <x>210</x>
+       <y>77</y>
        <width>113</width>
        <height>20</height>
       </rect>
@@ -3372,7 +3372,7 @@
       <string/>
      </property>
      <property name="placeholderText">
-      <string>6250</string>
+      <string>3250</string>
      </property>
     </widget>
     <widget class="Line" name="lineOscInput">
@@ -3404,10 +3404,10 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="labelOscPort">
+    <widget class="QLabel" name="labelOscInputMonitorPort">
      <property name="geometry">
       <rect>
-       <x>104</x>
+       <x>110</x>
        <y>78</y>
        <width>91</width>
        <height>20</height>
@@ -3424,7 +3424,7 @@
      <property name="geometry">
       <rect>
        <x>100</x>
-       <y>119</y>
+       <y>220</y>
        <width>555</width>
        <height>1</height>
       </rect>
@@ -3437,7 +3437,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>111</y>
+       <y>210</y>
        <width>81</width>
        <height>16</height>
       </rect>
@@ -3453,7 +3453,7 @@
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>141</y>
+       <y>240</y>
        <width>535</width>
        <height>251</height>
       </rect>
@@ -3505,7 +3505,7 @@
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>404</y>
+       <y>503</y>
        <width>33</width>
        <height>22</height>
       </rect>
@@ -3530,7 +3530,7 @@
      <property name="geometry">
       <rect>
        <x>149</x>
-       <y>404</y>
+       <y>503</y>
        <width>33</width>
        <height>22</height>
       </rect>
@@ -3551,12 +3551,12 @@
       <string>Remove OSC Output</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBoxEnableOscInput">
+    <widget class="QCheckBox" name="checkBoxEnableOscInputControl">
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>40</y>
-       <width>171</width>
+       <y>120</y>
+       <width>201</width>
        <height>17</height>
       </rect>
      </property>
@@ -3564,14 +3564,97 @@
       <enum>Qt::NoFocus</enum>
      </property>
      <property name="text">
-      <string>Enable OSC input</string>
+      <string>Enable OSC Control</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEditOscWebSocketInputPort">
+    <widget class="QLineEdit" name="lineEditOscInputControlPort">
      <property name="geometry">
       <rect>
-       <x>443</x>
-       <y>76</y>
+       <x>210</x>
+       <y>157</y>
+       <width>113</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="placeholderText">
+      <string>6250</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelOscInputControlPort">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>158</y>
+       <width>141</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>UDP Port:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBoxEnableOscInputMonitor">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>40</y>
+       <width>210</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="text">
+      <string>Enable OSC Monitor</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelOscInputWebSocketPort">
+     <property name="geometry">
+      <rect>
+       <x>350</x>
+       <y>158</y>
+       <width>141</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Web Socket Port:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBoxEnableOscInputWebSocket">
+     <property name="geometry">
+      <rect>
+       <x>358</x>
+       <y>120</y>
+       <width>291</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="text">
+      <string>Enable OSC Control through Web Socket</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEditOscInputWebSocketPort">
+     <property name="geometry">
+      <rect>
+       <x>500</x>
+       <y>157</y>
        <width>113</width>
        <height>20</height>
       </rect>
@@ -3584,22 +3667,6 @@
      </property>
      <property name="placeholderText">
       <string>4250</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="labelOscWebSocketPort">
-     <property name="geometry">
-      <rect>
-       <x>293</x>
-       <y>78</y>
-       <width>141</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>WebSocket Port:</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
    </widget>
@@ -4413,10 +4480,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>lineEditOscInputPort</sender>
+   <sender>lineEditOscInputMonitorPort</sender>
    <signal>editingFinished()</signal>
    <receiver>SettingsDialog</receiver>
-   <slot>oscPortChanged()</slot>
+   <slot>oscMonitorPortChanged()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>221</x>
@@ -4493,10 +4560,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>checkBoxEnableOscInput</sender>
+   <sender>checkBoxEnableOscInputControl</sender>
    <signal>stateChanged(int)</signal>
    <receiver>SettingsDialog</receiver>
-   <slot>enableOscInputChanged(int)</slot>
+   <slot>enableOscInputControlChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>125</x>
@@ -4957,10 +5024,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>lineEditOscWebSocketInputPort</sender>
+   <sender>lineEditOscInputControlPort</sender>
    <signal>editingFinished()</signal>
    <receiver>SettingsDialog</receiver>
-   <slot>oscWebSocketPortChanged()</slot>
+   <slot>oscControlPortChanged()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>568</x>
@@ -4969,6 +5036,54 @@
     <hint type="destinationlabel">
      <x>694</x>
      <y>11</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxEnableOscInputMonitor</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>enableOscInputMonitorChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>227</x>
+     <y>88</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>349</x>
+     <y>369</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEditOscInputWebSocketPort</sender>
+   <signal>editingFinished()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>oscWebSocketPortChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>569</x>
+     <y>202</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>349</x>
+     <y>369</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxEnableOscInputWebSocket</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>enableOscInputWebSocketChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>543</x>
+     <y>161</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>349</x>
+     <y>369</y>
     </hint>
    </hints>
   </connection>
@@ -5003,7 +5118,7 @@
   <slot>showThumbnailTooltipChanged(int)</slot>
   <slot>reverseOscTimeChanged(int)</slot>
   <slot>disableInAndOutPointsChanged(int)</slot>
-  <slot>oscPortChanged()</slot>
+  <slot>oscMonitorPortChanged()</slot>
   <slot>showAddTriCasterDeviceDialog()</slot>
   <slot>removeTriCasterDevice()</slot>
   <slot>tricasterDeviceItemDoubleClicked(QTreeWidgetItem*,int)</slot>
@@ -5014,7 +5129,7 @@
   <slot>removeOscOutput()</slot>
   <slot>delayTypeChanged(QString)</slot>
   <slot>tricasterProductChanged(QString)</slot>
-  <slot>enableOscInputChanged(int)</slot>
+  <slot>enableOscInputControlChanged(int)</slot>
   <slot>themeChanged(QString)</slot>
   <slot>showAddAtemDeviceDialog()</slot>
   <slot>removeAtemDevice()</slot>
@@ -5040,5 +5155,8 @@
   <slot>logLevelChanged(int)</slot>
   <slot>useDropFrameNotationChanged(int)</slot>
   <slot>oscWebSocketPortChanged()</slot>
+  <slot>enableOscInputMonitorChanged(int)</slot>
+  <slot>enableOscInputWebSocketChanged(int)</slot>
+  <slot>oscControlPortChanged()</slot>
  </slots>
 </ui>
